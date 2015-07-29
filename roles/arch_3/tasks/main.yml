@@ -42,4 +42,4 @@
 - name: Copy rename_sensu_client.sh script
   copy: src=../files/rename_sensu_client.sh dest=/home/ubuntu/rename_sensu_client.sh owner=ubuntu mode 0755
 
-- cron: name="check gnos_name" minute="5" hour="*" job="/home/ubuntu/rename_sensu_client.sh > /dev/null"
+- cron: name="change Sensu client name" minute="*/5" hour="*" job="/home/ubuntu/rename_sensu_client.sh > /dev/null"

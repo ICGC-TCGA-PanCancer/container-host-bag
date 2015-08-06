@@ -6,16 +6,20 @@
 [[ ! -f /datastore/gnos_id.txt ]] && exit 0
 
 addr=`ip a show eth0| grep inet|egrep -v inet6| awk '{print $2}' | cut -d"/" -f1`
-sanitized_address=`echo $addr|sed 's/\./\-/g'`
+sanitized_address=`echo $addr|sed 's/\./\_/g'`
 gnos=`cat /datastore/gnos_id.txt`
 
 rm -f /datastore/gnos_id.txt
 rm /etc/sensu/conf.d/client.json
 
+# mangling to rename the worker
+gnos_short=`echo $gnos|awk -F"-" '{print $1}'`
+gnos_full="$gnos_short-worker-$sanitized_address"
+
 cat <<EOF >> /etc/sensu/conf.d/client.json
 {
   "client": {
-    "name": "${gnos}_${sanitized_address}",
+    "name": "${gnos_full}",
     "address": "54.165.156.160",
     "subscriptions": [ "common", "ceph" ],
     "environment" : {

@@ -9,7 +9,7 @@
     "Workflow_Bundle_HelloWorld_1.0-SNAPSHOT_SeqWare_1.1.0"
   ],
   "install_workflow": "false",
-  "test_workflows": "true",
+  "test_workflows": "false",
   "queueHost": "{{ queueHost }}",
   "queueName": "{{ queueName }}",
   "lvm_device_whitelist": "/dev/xvdb,/dev/xvdc,/dev/xvdd,/dev/xvde",

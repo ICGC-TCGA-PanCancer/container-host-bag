@@ -3,6 +3,7 @@
   get_url: url=https://seqwaremaven.oicr.on.ca/artifactory/simple/seqware-release/io/consonance/consonance-arch/{{ consonance_arch_version }}/consonance-arch-{{ consonance_arch_version }}.jar dest=/home/ubuntu/consonance-arch-{{ consonance_arch_version }}.jar
 
 # TODO: above is where I would replace the consonance jar with a custom version if I modify the worker (which I will have to)
+# TODO: install Dockstore CLI and jar
 
 # The "endless" flag for the worker is not a true/false, it's "--endless" or "".
 - name: Conditionally turn endless_worker_flag on

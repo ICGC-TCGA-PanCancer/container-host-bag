@@ -14,7 +14,7 @@
   "queueName": "{{ queueName }}",
   "lvm_device_whitelist": "/dev/xvdb,/dev/xvdc,/dev/xvdd,/dev/xvde",
   "single_node_lvm": true,
-  "consonance_arch_version": "{{ consonance_arch_version }}",
+  "consonance_arch_version": "2.0-alpha.6",
   "seqware_engine": "whitestar",
   "seqware_use_custom_settings": false,
   "azure": false

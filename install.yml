@@ -63,28 +63,28 @@
     - { role: swap-enabled, when: swap_on and ansible_swaptotal_mb < 9000 }
     - { role: java, java_provider: Oracle8 }
     - { role: install-docker }
-    - { role: seqware-container }
-    - { role: workflow-dewrapper-dependencies, when: (workflow_name is defined and 'DEWrapper' in workflow_name ) }
+#    - { role: seqware-container }
+#    - { role: workflow-dewrapper-dependencies, when: (workflow_name is defined and 'DEWrapper' in workflow_name ) }
 
 
-- hosts: master:worker
-  sudo: True
-  vars:
-    user_name: ubuntu
-  tasks:
-    - name: Copy gnos.pem keys to worker
-      copy: src={{ item }} dest=/home/{{ user_name }}/.gnos/ owner={{ user_name }} group={{ user_name }}
-      with_fileglob:
-        - /home/{{ user_name }}/.gnos/*
+#- hosts: master:worker
+#  sudo: True
+#  vars:
+#    user_name: ubuntu
+#  tasks:
+#    - name: Copy gnos.pem keys to worker
+#      copy: src={{ item }} dest=/home/{{ user_name }}/.gnos/ owner={{ user_name }} group={{ user_name }}
+#      with_fileglob:
+#        - /home/{{ user_name }}/.gnos/*
 
-- hosts: master
-  sudo: True
-  vars:
-    installed_workflows_path: /workflows
-    target_workflow_path: /workflows
-    user_name: ubuntu
-  roles:
-    - { role: workflow, when: http_workflows is defined or s3_workflows is defined }
+#- hosts: master
+#  sudo: True
+#  vars:
+#    installed_workflows_path: /workflows
+#    target_workflow_path: /workflows
+#    user_name: ubuntu
+#  roles:
+#    - { role: workflow, when: http_workflows is defined or s3_workflows is defined }
 
 - hosts: master
   sudo: true
@@ -92,15 +92,15 @@
     - { role: containers, when: containers is defined or http_containers is defined or s3_containers is defined }
 
 # Install monitoring components onto the client, once it is set up with all necessary containers. Maybe should happen before the consonance stuff...
-- hosts: master
-  sudo: True
-  include: ../monitoring-bag/site.yml  sensu_server_host=sensu-server
+#- hosts: master
+#  sudo: True
+#  include: ../monitoring-bag/site.yml  sensu_server_host=sensu-server
 
 - hosts: master
   sudo: True
   roles:
     - { role: consonance }
 
-- hosts: master
-  roles:
-    - { role: test, when: test_workflows is defined and test_workflows }
+#- hosts: master
+#  roles:
+#    - { role: test, when: test_workflows is defined and test_workflows }

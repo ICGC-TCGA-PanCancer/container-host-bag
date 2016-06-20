@@ -2,6 +2,8 @@
 - name: Get Architecture3 jar file
   get_url: url=https://seqwaremaven.oicr.on.ca/artifactory/simple/seqware-release/io/consonance/consonance-arch/{{ consonance_arch_version }}/consonance-arch-{{ consonance_arch_version }}.jar dest=/home/ubuntu/consonance-arch-{{ consonance_arch_version }}.jar
 
+# TODO: above is where I would replace the consonance jar with a custom version if I modify the worker (which I will have to)
+
 # The "endless" flag for the worker is not a true/false, it's "--endless" or "".
 - name: Conditionally turn endless_worker_flag on
   set_fact: endless_worker_flag=" --endless "
@@ -41,7 +43,16 @@
     - /home/ubuntu/.gnos/*
     - /home/ubuntu/.aws/*
 
+- name: Install avro
+  pip: name=avro version=1.7.7 executable=pip2.7
+
+- name: Install schema-salad
+  pip: name=schema-salad version=1.7.20160316150109 executable=pip2.7
+
 - name: Install cwltool
+  pip: name=cwltool version=1.0.20160316150250 executable=pip2.7
+
+- name: Install cwl-runner
   pip: name=cwl-runner executable=pip2.7
 
 # install dcc-storage
@@ -54,7 +65,7 @@
   sudo: true
   file: path=/icgc/dcc-storage/archive owner=ubuntu state=directory
 
-- name: Get file 
+- name: Get file
   get_url: url=https://seqwaremaven.oicr.on.ca/artifactory/dcc-release/org/icgc/dcc/dcc-storage-client/{{ dcc_storage_version }}/dcc-storage-client-{{ dcc_storage_version }}-dist.tar.gz dest=/icgc/dcc-storage/archive
 
 - name: Unarchive the dcc tool

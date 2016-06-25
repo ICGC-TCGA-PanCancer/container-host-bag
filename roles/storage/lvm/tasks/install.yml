@@ -8,6 +8,7 @@
    - lvm2
    - parted
    - xfsprogs
+   - bsdgames
 
 - name: Install encryption
   apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
@@ -53,7 +54,7 @@
 
 
 - name: Storage | Create a volume group white listed devices
-  lvg: vg=volume_group pvs={{ lvm_device_whitelist }} state=present 
+  lvg: vg=volume_group pvs={{ lvm_device_whitelist }} state=present
   register: lvm_volume_created
 
 - name: Storage | Create logical volume

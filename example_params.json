@@ -12,7 +12,7 @@
   "test_workflows": "true",
   "queueHost": "localhost",
   "queueName": "localhost",
-  "lvm_device_whitelist": "/dev/xvdb,/dev/xvdc,/dev/xvdd,/dev/xvde",
+  "lvm_device_whitelist": "/dev/xvdb",
   "single_node_lvm": true,
   "consonance_arch_version": "2.0-alpha.6",
   "seqware_engine": "whitestar",

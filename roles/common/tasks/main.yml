@@ -10,7 +10,7 @@
     - python
 
 - name: Download get-pip
-  get_url: url=https://bootstrap.pypa.io/get-pip.py dest=/home/ubuntu/downloads/get-pip.py
+  get_url: url=https://bootstrap.pypa.io/get-pip.py dest=/home/ubuntu/downloads/get-pip.py validate_certs=no
 
 - name: Install pip
   sudo: True

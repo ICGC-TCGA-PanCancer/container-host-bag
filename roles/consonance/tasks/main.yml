@@ -67,7 +67,7 @@
   file: path=/icgc/dcc-storage/archive owner=ubuntu state=directory
 
 - name: Get file
-  get_url: url=https://seqwaremaven.oicr.on.ca/artifactory/dcc-release/org/icgc/dcc/dcc-storage-client/{{ dcc_storage_version }}/dcc-storage-client-{{ dcc_storage_version }}-dist.tar.gz dest=/icgc/dcc-storage/archive
+  get_url: url=https://seqwaremaven.oicr.on.ca/artifactory/dcc-release/org/icgc/dcc/dcc-storage-client/{{ dcc_storage_version }}/dcc-storage-client-{{ dcc_storage_version }}-dist.tar.gz dest=/icgc/dcc-storage/archive validate_certs=no
 
 - name: Unarchive the dcc tool
   unarchive: src=/icgc/dcc-storage/archive/dcc-storage-client-{{ dcc_storage_version }}-dist.tar.gz dest=/icgc/dcc-storage/archive  copy=no

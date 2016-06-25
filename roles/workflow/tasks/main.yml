@@ -53,7 +53,7 @@
   with_dict: s3_workflows | default({})
 
 - name: Get seqware jar to unzip workflows
-  get_url: url=https://seqwaremaven.oicr.on.ca/artifactory/seqware-release/com/github/seqware/seqware-distribution/{{ seqware_version }}/seqware-distribution-{{ seqware_version }}-full.jar dest=/workflows/seqware-distribution-{{ seqware_version }}-full.jar
+  get_url: url=https://seqwaremaven.oicr.on.ca/artifactory/seqware-release/com/github/seqware/seqware-distribution/{{ seqware_version }}/seqware-distribution-{{ seqware_version }}-full.jar dest=/workflows/seqware-distribution-{{ seqware_version }}-full.jar validate_certs=no
 
 - name: Unzip workflows that came from HTTP
   shell: java -cp /workflows/seqware-distribution-{{ seqware_version }}-full.jar net.sourceforge.seqware.pipeline.tools.UnZip --input-zip {{ target_workflow_path }}/{{ item.value.name }}.zip --output-dir {{ target_workflow_path }}/{{ item.value.name }}
